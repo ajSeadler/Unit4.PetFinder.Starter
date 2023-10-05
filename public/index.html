@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Pet Finder</h1>
-    
-    <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Pet App Homepage</title>
+  </head>
+  <body>
+    <div class="navbar"><ul>
+      <li><a href="http://localhost:8080/api/v1/pets">All Pets</a></li>
+      <li><a href="http://localhost:8080/api/v1/pets/Fido">Fido</a></li>
+      <li><a href="http://localhost:8080/api/v1/pets/Spot">Spot</a></li>
+      <li><a href="http://localhost:8080/api/v1/pets/Rover">Rover</a></li>
+      <li>
+        <a href="http://localhost:8080/api/v1/pets/owner?owner=John">
+          Dogs Owned By "John":
+        </a>
+      </li>
+      <li>
+        <a href="http://localhost:8080/api/v1/pets/owner?owner=Jane">
+          Dogs Owned By "Jane":
+        </a>
+      </li>
+    </ul></div>
+    <div class="content">
+      <h1>Welcome to Pet Finder!</h1>
+    </div>
+     
+    <div class="center-content"><h1>Hi there. <br><br> This is a fake pet finder site that allows you to obtain information about a spectific pet that you may have not even asked for! Enjoy!
+    </h1>
+  <p>(The dogs are starting to show interest in anti-aircraft artillery, please send help)</p></div>
+   
+     
+  <footer>
+    <p>&copy; 2023 Pet Finder Inc. All rights reserved dude.</p>
+  </footer>
+      <script src="script.js"></script>
+  </body>
 </html>

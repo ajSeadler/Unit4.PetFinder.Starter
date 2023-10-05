@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
+    "seed": "node ./db/seeds.js",
     "start": "nodemon index.js"
   },
   "keywords": [],

@@ -1,55 +1,65 @@
-// import the pets array from data.js
+// Import the pets array from data.js
 const pets = require('./data');
 
-// init express app
+// Initialize the Express app
 const express = require('express');
 const app = express();
 
 const PORT = 8080;
 
+app.use(express.static('public'));
+
 // GET - / - returns homepage
 app.get('/', (req, res) => {
-    // serve up the public folder as static index.html file
-
+  // Serve up the public folder as a static index.html file
+  res.sendFile(__dirname + '/public/index.html');
 });
 
-// hello world route
+// Hello World route
 app.get('/api', (req, res) => {
-    res.send('Hello World!');
+  res.send('Hello World!');
 });
 
-// get all pets from the database
+// Get all pets from the database
 app.get('/api/v1/pets', (req, res) => {
-    // send the pets array as a response
-
+  // Send the pets array as a JSON response
+  res.json(pets);
 });
 
-// get pet by owner with query string
+// Get two pets owned by an owner with a query string
 app.get('/api/v1/pets/owner', (req, res) => {
-    // get the owner from the request
+  // Get the owner from the query string
+  const owner = req.query.owner;
 
+  // Filter the pets array to find all pets owned by the specified owner
+  const petsByOwner = pets.filter(pet => pet.owner === owner);
 
-    // find the pet in the pets array
-    const pet = pets.find(pet => pet.owner === owner);
+  // Get the first two pets owned by the specified owner
+  const twoPets = petsByOwner.slice(0, 2);
 
-    // send the pet as a response
-
+  if (twoPets.length > 0) {
+    res.json(twoPets);
+  } else {
+    res.status(404).json({ error: 'No pets found for this owner' });
+  }
 });
 
-// get pet by name
+// Get pet by name
 app.get('/api/v1/pets/:name', (req, res) => {
-    // get the name from the request
+  const name = req.params.name;
 
+  // Find the pet in the pets array
+  const pet = pets.find(pet => pet.name === name);
 
-    // find the pet in the pets array
-    const pet = pets.find(pet => pet.name === name);
-
-    // send the pet as a response
-
+  if (pet) {
+    res.json(pet);
+  } else {
+    res.status(404).json({ error: 'Pet not found' });
+  }
 });
 
 app.listen(PORT, () => {
-    console.log('Server is listening on port ' + PORT);
+  console.log('Server is listening on port ' + PORT);
 });
 
 module.exports = app;
